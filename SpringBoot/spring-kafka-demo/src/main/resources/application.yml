@@ -1,0 +1,23 @@
+spring:
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        #type mapping
+        spring.json.type.mapping: foo:com.common.Foo1,bar:com.common.Bar1
+#      transaction-id-prefix: tx.# 事务相关
+    bootstrap-servers: 192.168.66.6:9092
+    consumer:
+      bootstrap-servers: 192.168.66.6:9092
+      enable-auto-commit: true
+#      auto-offset-reset: earliest # 修改groupid看效果
+
+
+#    listener:
+#      ack-mode: manual
+#      missing-topics-fatal: false
+
+
+
+server:
+  port: 8083
