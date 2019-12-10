@@ -13,7 +13,17 @@ import java.util.Date;
 /**
  * APPLICATION_FORM_URLENCODED_VALUE 因为通过RequestParamMethodArgumentResolver（@RequestParam）或ServletModelAttributeMethodProcessor（@ModelAttribute）通过调用ConvertionService来做类型转换，Formatter也是Converter，所以使用Formatter转换。
  *
- * APPLICATION_JSON_VALUE 通过RequestResponseBodyMethodProcessor来处理，RequestResponseBodyMethodProcessor使用HttpMessageConverter转换HttpMessageConverter中需要用到json序列化器。所以使用自定义Serializer
+ * APPLICATION_JSON_VALUE 通过RequestResponseBodyMethodProcessor来处理，RequestResponseBodyMethodProcessor使用HttpMessageConverter转换HttpMessageConverter中需要用到json序列化器。所以使用自定义Deserializer
+ *
+ * 因为输出都加了@ResponseBody 所以都通过Serializer来序列化
+ *
+ *
+ * 加入		<!-- 增加Jackson XML支持 -->
+ * 		<dependency>
+ * 			<groupId>com.fasterxml.jackson.dataformat</groupId>
+ * 			<artifactId>jackson-dataformat-xml</artifactId>
+ * 			<version>2.9.0</version>
+ * 		</dependency>
  */
 @RequestMapping
 @Controller

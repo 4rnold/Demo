@@ -51,6 +51,14 @@
             <artifactId>joda-money</artifactId>
             <version>1.0.1</version>
         </dependency>
+
+        <!-- 增加Jackson XML支持 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
