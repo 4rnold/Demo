@@ -9,6 +9,13 @@
 - 自定义HttpMessageConverter 
 - 对比@ModelAttribute 和 @ RequestParam 区别
 
+### Formatter_and_CustomJsonDeserializer_JsonSerializer
+
+- APPLICATION_FORM_URLENCODED_VALUE 因为通过RequestParamMethodArgumentResolver（@RequestParam）或ServletModelAttributeMethodProcessor（@ModelAttribute）通过调用ConvertionService来做类型转换，Formatter也是Converter，所以使用Formatter转换。 
+
+- APPLICATION_JSON_VALUE 通过RequestResponseBodyMethodProcessor来处理，RequestResponseBodyMethodProcessor使用HttpMessageConverter转换HttpMessageConverter中需要用到json序列化器。所以使用自定义Serializer
+
+
 ## spring-kafka-demo
 
 事务发送、死信队列、手动确认等

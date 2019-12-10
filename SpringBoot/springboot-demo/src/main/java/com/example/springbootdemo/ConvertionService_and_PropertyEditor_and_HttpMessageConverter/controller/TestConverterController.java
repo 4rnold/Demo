@@ -2,6 +2,13 @@ package com.example.springbootdemo.ConvertionService_and_PropertyEditor_and_Http
 
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @RequestParam 是 通过 Request.get(xxx) 来获取参数，使用Convertionservice来转换。【参数必须是xxx=yyy形式，必须有xxx参数】
+ *
+ * @ModelAttribute 相对@RequestParam 区别：可以将xxx=yyy 解析到 Bean中的属性。
+ *
+ * @RequestBody 就是解析body，通过HttpMessageConverter 来解析Body。
+ */
 @RequestMapping
 @RestController
 public class TestConverterController {
