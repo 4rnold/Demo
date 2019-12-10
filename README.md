@@ -17,7 +17,10 @@
 - 因为输出都加了@ResponseBody 所以都通过Serializer来序列化。
 
 ### RestTemplate
-
+自定义HttpClient
+- 使用连接池
+-  关闭自动重试
+- 自定义keepalive策略
 
 
 ## spring-kafka-demo
