@@ -15,7 +15,11 @@ public class MoneyFormatter implements Formatter<Money> {
     @Override
     public Money parse(String text, Locale locale) throws ParseException {
         if (NumberUtils.isParsable(text)) {
-            return Money.of(CurrencyUnit.of("CNY"), NumberUtils.createBigDecimal(text));
+            try {
+                return Money.of(CurrencyUnit.of("CNY"), NumberUtils.createBigDecimal(text));
+            } catch (Exception e) {
+                throw new ParseException(text+"参数解析错误", 0);
+            }
         } else if (StringUtils.isNoneEmpty(text)) {
             String[] split = StringUtils.split(text, " ");
             if (split != null && split.length == 2 && NumberUtils.isParsable(split[1])) {

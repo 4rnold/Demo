@@ -16,6 +16,9 @@
 - APPLICATION_JSON_VALUE 通过RequestResponseBodyMethodProcessor来处理，RequestResponseBodyMethodProcessor使用HttpMessageConverter转换HttpMessageConverter中需要用到json序列化器。所以使用自定义Deserializer。
 - 因为输出都加了@ResponseBody 所以都通过Serializer来序列化。
 
+### RestTemplate
+
+
 
 ## spring-kafka-demo
 

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @ToString
 public class NewCoffeeRequest {
-    @NotEmpty
+    @NotEmpty(message = "name不能为空啊我的亲")
     private String name;
     @NotNull
     private Money price;

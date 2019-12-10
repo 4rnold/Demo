@@ -1,14 +1,18 @@
 package com.example.springbootdemo.Formatter_and_CustomJsonDeserializer_JsonSerializer.controller;
 
 import com.example.springbootdemo.Formatter_and_CustomJsonDeserializer_JsonSerializer.model.Coffee;
+import com.example.springbootdemo.Formatter_and_CustomJsonDeserializer_JsonSerializer.model.ResponseData;
 import com.example.springbootdemo.Formatter_and_CustomJsonDeserializer_JsonSerializer.request.NewCoffeeRequest;
+import org.joda.money.CurrencyUnit;
+import org.joda.money.Money;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Date;
+import java.util.*;
 
 /**
  * APPLICATION_FORM_URLENCODED_VALUE 因为通过RequestParamMethodArgumentResolver（@RequestParam）或ServletModelAttributeMethodProcessor（@ModelAttribute）通过调用ConvertionService来做类型转换，Formatter也是Converter，所以使用Formatter转换。
@@ -29,19 +33,34 @@ import java.util.Date;
 @Controller
 public class CoffeeController {
 
-
-    @RequestMapping(path = "/coffee", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(path = "/coffee", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseBody
-    public Coffee test2(@Valid @ModelAttribute NewCoffeeRequest request, BindingResult bindingResult) {
+    public ResponseData test3(@Valid @ModelAttribute NewCoffeeRequest request, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return null;
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+            HashMap<String, Object> resultMap = new HashMap<>();
+
+            for (FieldError fieldError : fieldErrors) {
+                String field = fieldError.getField();
+                String defaultMessage = fieldError.getDefaultMessage();
+                resultMap.put(field, defaultMessage);
+            }
+            return ResponseData.badRequest().putDataValue("error",resultMap);
         }
         Coffee coffee = new Coffee(1L, new Date(), new Date(), "form" + request.getName(), request.getPrice());
-        return coffee;
+        return ResponseData.ok().putDataValue("coffee", coffee);
     }
 
 
-    @RequestMapping(path = "/coffee", consumes = MediaType.APPLICATION_JSON_VALUE)
+/*    @RequestMapping(path = "/coffee", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @ResponseBody
+    public Coffee test2(@Valid @ModelAttribute NewCoffeeRequest request) {
+        Coffee coffee = new Coffee(1L, new Date(), new Date(), "form" + request.getName(), request.getPrice());
+        return coffee;
+    }*/
+
+
+    @PostMapping(path = "/coffee", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Coffee test(@Valid @RequestBody NewCoffeeRequest request, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -49,5 +68,25 @@ public class CoffeeController {
         }
         Coffee coffee = new Coffee(1L, new Date(), new Date(), "json" + request.getName(), request.getPrice());
         return coffee;
+    }
+
+
+    @GetMapping(path = "/coffee", params = "!name")
+    @ResponseBody
+    public List<Coffee> getAll() {
+        ArrayList<Coffee> coffees = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            coffees.add(new Coffee(1L, new Date(), new Date(), "name", Money.of(CurrencyUnit.AUD,12.34)));
+        }
+
+        return coffees;
+    }
+
+    @GetMapping(path = "/coffee", params = "name")
+    @ResponseBody
+    public Coffee getByName(@RequestParam String name) {
+        System.out.println(name);
+        return new Coffee(1L, new Date(), new Date(), name, Money.of(CurrencyUnit.AUD,12.34));
     }
 }
