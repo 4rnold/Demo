@@ -17,11 +17,10 @@
 - 因为输出都加了@ResponseBody 所以都通过Serializer来序列化。
 
 ### RestTemplate
-自定义HttpClient
+自定义HttpClient （自定义HttpComponentsClientHttpRequestFactory），构造RestTemplate
 - 使用连接池
 -  关闭自动重试
-- 自定义keepalive策略
-
+- 自定义keepalive策略（CustomConnectionKeepAliveStrategy，自带的策略是没有keepalive头信息，就连接永久有效，改为连接默认30秒有效）
 
 ## spring-kafka-demo
 
@@ -33,10 +32,26 @@
 
 ## SpringCloud-Demo
 
-###  **eureka-server** 
+### config-server
+
+- 基于git 的配置中心
+
+###  **eureka-server**
 
 - eureka配置
 - eureka集群配置
+
+### eureka-waiter-service
+
+- 服务提供者
+
+### feign-customer-service
+
+- 服务消费
+- feign 负载均衡
+- Hystrix 熔断
+
+### hystrix-dashboard-demo
 
 ### zuul-gateway
 
