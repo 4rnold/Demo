@@ -17,16 +17,23 @@
 - 因为输出都加了@ResponseBody 所以都通过Serializer来序列化。
 
 ### RestTemplate
+
 自定义HttpClient （自定义HttpComponentsClientHttpRequestFactory），构造RestTemplate
 - 使用连接池
 -  关闭自动重试
 - 自定义keepalive策略（CustomConnectionKeepAliveStrategy，自带的策略是没有keepalive头信息，就连接永久有效，改为连接默认30秒有效）
 
+### ControllerAop
+
+controller日志、异常处理
+
 ## spring-kafka-demo
 
 事务发送、死信队列、手动确认等
 
+## Sharding-jdbc-demo
 
+主从，分库，分表
 
 # SringCloud
 
