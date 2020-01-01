@@ -34,7 +34,7 @@
 ## Sharding-jdbc-demo
 
 - 主从，分库，分表
-- 数据脱敏：假设product_info.spec字段为不加密字段，product_info.image_url 为加密字段
+- 数据脱敏（没完成）（主要是配置多数据源，脱敏感觉不需要sharding-jdbc来实现，可以自己实现）
 
 
 
