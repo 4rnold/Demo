@@ -13,8 +13,8 @@ import java.util.Date;
  * @author Cenyol mail: mr.cenyol@gmail.com
  */
 @Controller
-//@SpringBootApplication(exclude = {SpringBootConfiguration.class})
-@SpringBootApplication
+@SpringBootApplication(exclude = {SpringBootConfiguration.class})
+//@SpringBootApplication
 public class MybatisPlusApplication {
 
     public static void main(String[] args) {
