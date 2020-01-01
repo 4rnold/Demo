@@ -25,15 +25,18 @@
 
 ### ControllerAop
 
-controller日志、异常处理
+- controller日志、异常处理
 
 ## spring-kafka-demo
 
-事务发送、死信队列、手动确认等
+- 事务发送、死信队列、手动确认等
 
 ## Sharding-jdbc-demo
 
-主从，分库，分表
+- 主从，分库，分表
+- 数据脱敏：假设product_info.spec字段为不加密字段，product_info.image_url 为加密字段
+
+
 
 # SringCloud
 

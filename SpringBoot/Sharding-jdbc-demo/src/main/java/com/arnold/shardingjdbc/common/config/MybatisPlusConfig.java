@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan( value = {"com.arnold.shardingjdbc.product.mapper","com.arnold.shardingjdbc.store.mapper"} )
+@MapperScan( value = {"com.arnold.shardingjdbc.product.mapper","com.arnold.shardingjdbc.store.mapper","com.arnold.shardingjdbc.UserEncrypt.mapper"} )
 public class MybatisPlusConfig {
 
     /**
