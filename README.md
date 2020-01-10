@@ -27,6 +27,10 @@
 
 - controller日志、异常处理
 
+### Test_Mybatis_TypeHandler
+
+- Mybatis自定义枚举TypeHandler
+
 ## spring-kafka-demo
 
 - 事务发送、死信队列、手动确认等
