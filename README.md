@@ -41,6 +41,10 @@
 
 - 基于redis的延时队列
 
+#### Redisson
+
+- 基于redisson 的分布式锁
+
 ## spring-kafka-demo
 
 - 事务发送、死信队列、手动确认等
