@@ -1,0 +1,59 @@
+#server.port=8088
+#
+##DataSource Config
+##spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+##spring.datasource.url=jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+##spring.datasource.username=root
+##spring.datasource.password=test
+#
+#spring.datasource.dy
+#
+#spring.thymeleaf.cache=false
+
+server:
+  port: 8088
+  tomcat:
+    uri-encoding: utf-8
+spring:
+  profiles:
+    active: dev
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/febs/views/
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  aop:
+    proxy-target-class: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/febs_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+    username: root
+    password: 123456
+  messages:
+    basename: exceptions
+#  mvc:
+#    locale-resolver: accept_header
+#    locale: ar_001
+
+mybatis-plus:
+  configuration:
+    jdbc-type-for-null: null #��Ҫ���oracle 测试
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 用于显示mybatis sql
+  global-config:
+    db-config:
+      select-strategy: not_empty
+  type-enums-package: com.arnold.febs.system.enums
+
+#spring.mvc.favicon.enabled = false
+
+#logging:
+#  level:
+#   root: debug
+logging:
+  level:
+    com:
+      arnold: debug

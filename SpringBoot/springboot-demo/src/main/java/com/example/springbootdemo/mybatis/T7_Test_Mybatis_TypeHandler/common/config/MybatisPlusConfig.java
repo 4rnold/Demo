@@ -12,15 +12,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan( value = {"com.example.springbootdemo.T7_Test_Mybatis_TypeHandler.mapper"} )
+@MapperScan( value = {"com.example.springbootdemo.mybatis.T7_Test_Mybatis_TypeHandler.mapper"} )
 public class MybatisPlusConfig {
 
     /**
      * 分页插件
      */
-    @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
-    }
+//    @Bean
+//    public PaginationInterceptor paginationInterceptor() {
+//        return new PaginationInterceptor();
+//    }
 }
 

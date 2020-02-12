@@ -38,8 +38,9 @@ public class RedisDelayingQueue<T> {
         System.out.println(msg);
         log.info(JSONUtil.toJsonStr(msg));
         TaskItem<T> tTaskItem = new TaskItem<>();
-        String id = UUID.randomUUID().toString();
+        String id = UUID.randomUUID().toString();   ////////////////封装唯一id，因为set不能重复
         tTaskItem.msg = msg;
+        tTaskItem.id = id;
         String itemJsonStr = JSONUtil.toJsonStr(tTaskItem);
         log.info(itemJsonStr);
         zSetOperations.add(queueKey, itemJsonStr, System.currentTimeMillis() + 20000 );

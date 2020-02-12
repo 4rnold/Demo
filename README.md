@@ -35,6 +35,10 @@
 
 - Mybatis自定义枚举TypeHandler
 
+  1. 自定义TypeHandler，使用@MappedTypes
+
+  2. 配置mybatis-plus.type-handlers-package
+
 ### Redis
 
 #### T8_Redis_Delay_queue

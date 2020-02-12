@@ -82,6 +82,13 @@
             <version>1.2.61</version>
         </dependency>
 
+        <!-- 控制台 SQL日志打印插件 -->
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+
         <!-- 代码生成器-->
         <dependency>
             <groupId>com.baomidou</groupId>
