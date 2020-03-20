@@ -118,7 +118,6 @@ public class CustomerServiceApplication implements ApplicationRunner {
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
-//		return new RestTemplate();
 
         return builder
                 .setConnectTimeout(Duration.ofMillis(100))
