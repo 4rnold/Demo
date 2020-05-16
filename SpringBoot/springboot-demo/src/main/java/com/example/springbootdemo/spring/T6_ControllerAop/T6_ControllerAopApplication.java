@@ -1,4 +1,4 @@
-package com.example.springbootdemo.spring.Formatter_and_CustomJsonDeserializer_JsonSerializer;
+package com.example.springbootdemo.spring.T6_ControllerAop;
 
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration;
 import org.redisson.spring.starter.RedissonAutoConfiguration;
@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 
 @SpringBootApplication(exclude= {RedisAutoConfiguration.class, RedissonAutoConfiguration.class, MybatisPlusAutoConfiguration.class})
-public class SpringbootDemoApplication {
+public class T6_ControllerAopApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootDemoApplication.class, args);
+        SpringApplication.run(T6_ControllerAopApplication.class, args);
     }
 
 }
