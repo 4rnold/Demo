@@ -33,7 +33,7 @@ public class TestSpringBean {
     public void test2() {
         TestEntity testEntity = new TestEntity();
         testEntity.setId(14);
-        testEntity.setName("aaaaaa");
+        testEntity.setName("aaaa");
         helloService.testObj(testEntity);
         System.out.println("over");
     }

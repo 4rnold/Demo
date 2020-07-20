@@ -16,13 +16,12 @@
 
 package com.example;
 
-import com.common.Foo1;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import com.common.Bar2;
-import com.common.Foo2;
+import com.example.common.Bar2;
+import com.example.common.Foo2;
 
 /**
  * 注解中的id 会覆盖groupid。和主程序中的multiGroup是两个独立的group，能同时收到消息。

@@ -17,8 +17,6 @@ public class MyEntityPropertyEditor extends PropertyEditorSupport {
     public String getAsText() {
 
         MyEntity value = (MyEntity) getValue();
-
-
         return value.getName() + "-" + value.getAge();
     }
 }

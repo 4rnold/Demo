@@ -30,6 +30,7 @@ public class ApiRequestCondition extends AbstractRequestCondition<ApiRequestCond
 	/**
 	 * @ApiCmdMapping.java 注解值处理方法级的 所以 用不到combine
 	 */
+	@Override
 	public ApiRequestCondition combine(ApiRequestCondition other) {
 		this.cmds.addAll(other.cmds);
 		return new ApiRequestCondition(cmds);
@@ -38,6 +39,7 @@ public class ApiRequestCondition extends AbstractRequestCondition<ApiRequestCond
 	/**
 	 * 获取匹配条件，如果return null 时表明不匹配
 	 */
+	@Override
 	public ApiRequestCondition getMatchingCondition(HttpServletRequest request) {
 		Req_header reqHeader = null;
 		String reqStr = null;

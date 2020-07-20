@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -15,7 +17,7 @@ public class TestEntity3 {
     @Length(min = 5)
     private String name;
 
-    @Min(5)
+    @Min(value = 5,message = "不能小于5")
     private Integer id;
 
     /*
@@ -31,11 +33,11 @@ public class TestEntity3 {
      */
     //一般可以key value形式接收参数，但返回还要通过json返回，要加上jsonFormat
     //DateTimeFormat其实是作为Formatter被注册到ConvertionService中了
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     //jsonFormat被MappingJackson2HttpMessageConverter处理
 
     //RequestResponseBodyMethodProcessor调用AbstractMessageConverterMethodArgumentResolver#readWithMessageConverters(HttpInputMessage, MethodParameter, Type)
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy/MM/dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy/MM/dd")
     private Date date;
 }

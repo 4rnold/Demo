@@ -18,6 +18,7 @@ public class WoQuApiRequestMappingHandlerMapping extends
 	
 	/**
 	 * 方法级自定义条件
+	 * Method有@ApiCmdMapping注解，就增加一个Condition，要满足Condition才行
 	 */
 	@Override
 	protected RequestCondition<?> getCustomMethodCondition(Method method) {
