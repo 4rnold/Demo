@@ -1,4 +1,4 @@
-package com.arnold.febs.system.controller;
+package com.arnold.febs.system.controller.test;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;

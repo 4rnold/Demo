@@ -12,7 +12,14 @@ import com.arnold.febs.system.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.mgt.CachingSecurityManager;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.DefaultSessionManager;
+import org.apache.shiro.session.mgt.SessionManager;
+import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
+import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.Serializable;
 
 @Controller
 @RequestMapping
@@ -55,6 +63,9 @@ public class LoginController {
         return mav;
     }
 
+    /**
+     * http://server1:8081/xxl-sso-server/login?redirect_url=http://server3:8083/xxl-sso-web-sample-springboot/
+     */
     @PostMapping("/login")
     @ResponseBody
     public FebsResponse postLogin(String username, String password, String verifyCode, boolean rememberMe, HttpServletRequest request) {
@@ -65,9 +76,49 @@ public class LoginController {
 
         UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
         subject.login(token);
-        //更新最后登录时间
+        //更新最后登录时间..
+
         return new FebsResponse().success();
     }
+
+
+    @RequestMapping("/testlogout")
+    @ResponseBody
+    public String testLogout() {
+        CachingSecurityManager securityManager = (CachingSecurityManager) SecurityUtils.getSecurityManager();
+        CacheManager cacheManager = securityManager.getCacheManager();
+
+        Subject subject = SecurityUtils.getSubject();
+        Serializable id = subject.getSession().getId();
+        cacheManager.getCache(CachingSessionDAO.ACTIVE_SESSION_CACHE_NAME).remove(id);
+        return "ok";
+    }
+
+    @RequestMapping("/testlogout2")
+    @ResponseBody
+    public String testLogout2() {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "ok logout";
+    }
+
+    @Autowired
+    DefaultSessionManager sessionManager;
+
+    @RequestMapping("/testlogout3")
+    @ResponseBody
+    public String testLogout3() {
+        Subject subject = SecurityUtils.getSubject();
+        SessionDAO sessionDAO = sessionManager.getSessionDAO();
+        Session session = sessionDAO.readSession(subject.getSession().getId());
+        sessionDAO.delete(session);
+
+        return "ok testlogout3";
+    }
+
+
+
+
 
     @GetMapping("images/captcha")
     public void captcha(HttpServletRequest request, HttpServletResponse response) throws IOException {

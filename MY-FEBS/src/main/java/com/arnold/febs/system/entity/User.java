@@ -130,4 +130,9 @@ public class User implements Serializable {
     @NotBlank(message = "{required}")
     @TableField(exist = false)
     private String roleId;
+
+
+    public Long getId() {
+        return userId;
+    }
 }

@@ -1,4 +1,4 @@
-package com.arnold.febs.system.controller;
+package com.arnold.febs.system.controller.test;
 
 import com.arnold.febs.common.entity.FebsResponse;
 import com.arnold.febs.common.utils.CheckUtil;

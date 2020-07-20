@@ -53,7 +53,8 @@ mybatis-plus:
 #logging:
 #  level:
 #   root: debug
-logging:
-  level:
-    com:
-      arnold: debug
+
+#logging:
+#  level:
+#    com:
+#      arnold: debug

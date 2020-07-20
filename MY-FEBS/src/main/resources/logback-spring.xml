@@ -43,12 +43,24 @@
         </filter>
     </appender>
 
-    <root level="debug">
-        <appender-ref ref="console" />
-    </root>
+
+<!--    <root level="debug">-->
+<!--        <appender-ref ref="console" />-->
+<!--    </root>-->
 
     <root level="info">
+        <appender-ref ref="console" />
         <appender-ref ref="file_info" />
         <appender-ref ref="file_error" />
     </root>
+
+
+
+
+
+<!--    当定义了两个root，他们的appender会合并，level会取下面的-->
+
+    <logger name="com.arnold" level="debug"/>
+
+
 </configuration>
