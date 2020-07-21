@@ -1,10 +1,10 @@
 package com.example.springrabbitmqdemo;
 
+import com.example.springrabbitmqdemo.deadLetterQueue.DeadLetterSender;
+import com.example.springrabbitmqdemo.delayQueue.DelaySender;
 import com.example.springrabbitmqdemo.entity.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -41,6 +41,32 @@ class SpringRabbitmqDemoApplicationTests {
     @Test
     public void test2() throws Exception {
         Order order = new Order("001", "第一个订单");
+        order.setTest("tes");
         sender.sendOrder(order);
+    }
+
+    @Autowired
+    DelaySender delaySender;
+
+    /**
+     * 测试delay msg
+     */
+    @Test
+    public void test3() {
+        delaySender.sendDelayMsg("eee",20000);
+        delaySender.sendDelayMsg("aaa",5000);
+    }
+
+
+    @Autowired
+    DeadLetterSender deadLetterSender;
+
+    /**
+     * 死信队列
+     */
+    @Test
+    public void test4() {
+        deadLetterSender.sendMsg("ccc",30000);
+        deadLetterSender.sendMsg("aaa", 5000);
     }
 }
